@@ -1,6 +1,6 @@
 from logging import debug
 from flask import Flask, request, jsonify
-
+from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flaskext.mysql import MySQL
