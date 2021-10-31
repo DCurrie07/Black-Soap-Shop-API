@@ -12,6 +12,7 @@ pymysql = "*"
 flask-cors = "*"
 gunicorn = "*"
 flask-mysql = "*"
+flask-marshmallow = "*"
 
 [dev-packages]
 
