@@ -18,9 +18,9 @@ mysql = MySQL()
 mysql.init_app(app)
 
 db = MySQL(app)
-# ma = Marshmallow(app)
+ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
-# CORS(app)
+CORS(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
