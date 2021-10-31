@@ -9,6 +9,8 @@ flask-sqlalchemy = "*"
 sqlalchemy = "*"
 flask-bcrypt = "*"
 pymysql = "*"
+flask-cors = "*"
+gunicorn = "*"
 
 [dev-packages]
 
