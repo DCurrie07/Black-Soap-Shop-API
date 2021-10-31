@@ -11,6 +11,7 @@ flask-bcrypt = "*"
 pymysql = "*"
 flask-cors = "*"
 gunicorn = "*"
+flask-mysql = "*"
 
 [dev-packages]
 
