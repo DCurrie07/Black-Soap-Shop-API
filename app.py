@@ -8,79 +8,78 @@ from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 app.secret_key= 'secret'
-# app.config["DATABASE_URL"] = "mysql://bb2ef251680853:f96c55a9@us-cdbr-east-04.cleardb.com/heroku_b1238e369440257?reconnect=true"
 
-app.config['MYSQL_DATABASE_USER'] = 'bb2ef251680853'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'f96c55a9'
+app.config['MYSQL_DATABASE_USER'] = 'b80e6664a2dc60'
+app.config['MYSQL_DATABASE_PASSWORD'] = '79eb48e5'
 app.config['MYSQL_DATABASE_DB'] = 'us-cdbr-east-04.cleardb.com'
-app.config['MYSQL_DATABASE_HOST'] = 'heroku_b1238e369440257'
+app.config['MYSQL_DATABASE_HOST'] = 'heroku_f1cb21ef63afad5'
 
 mysql = MySQL()
 mysql.init_app(app)
 
-# db = SQLAlchemy(app)
+db = MySQL(app)
 # ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 # CORS(app)
 
-# class User(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String, nullable=False, unique=True)
-#     password = db.Column(db.String, nullable=False)
-#     first_name = db.Column(db.String, nullable=False)
-#     last_name = db.Column(db.String, nullable=False)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
 
-#     def __init__(self, username, password, first_name, last_name):
-#         self.username = username
-#         self.password = password
-#         self.first_name = first_name
-#         self.last_name = last_name
+    def __init__(self, username, password, first_name, last_name):
+        self.username = username
+        self.password = password
+        self.first_name = first_name
+        self.last_name = last_name
 
-# class Admin(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String, nullable=False, unique=True)
-#     password = db.Column(db.String, nullable=False)
-#     first_name = db.Column(db.String, nullable=False)
-#     last_name = db.Column(db.String, nullable=False)
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
 
-#     def __init__(self, username, password, first_name, last_name):
-#         self.username = username
-#         self.password = password
-#         self.first_name = first_name
-#         self.last_name = last_name
+    def __init__(self, username, password, first_name, last_name):
+        self.username = username
+        self.password = password
+        self.first_name = first_name
+        self.last_name = last_name
 
 
-# class Product(db.Model):
-#     id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
-#     name = db.Column(db.String, nullable=False)
-#     description = db.Column(db.String, nullable=False)
-#     price = db.Column(db.Decimal, nullable=False)
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
+    name = db.Column(db.String, nullable=False)
+    description = db.Column(db.String, nullable=False)
+    price = db.Column(db.Decimal, nullable=False)
 
-#     def __init__(self, name, description, price):
-#         self.name = name
-#         self.description = description
-#         self.price = price
+    def __init__(self, name, description, price):
+        self.name = name
+        self.description = description
+        self.price = price
 
-# class UserSchema(ma.Schema):
-#     class Meta:
-#         fields = ("id", "username", "password", "first_name", "last_name")
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "username", "password", "first_name", "last_name")
 
-# user_schema = UserSchema()
-# multiple_user_schema = UserSchema(many=True)
+user_schema = UserSchema()
+multiple_user_schema = UserSchema(many=True)
 
-# class AdminSchema(ma.Schema):
-#     class Meta:
-#         fields = ("id", "username", "password", "first_name", "last_name")
+class AdminSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "username", "password", "first_name", "last_name")
 
-# admin_schema = AdminSchema()
-# multiple_admin_schema = AdminSchema(many=True)
+admin_schema = AdminSchema()
+multiple_admin_schema = AdminSchema(many=True)
 
-# class ProductSchema(ma.Schema):
-#     class Meta:
-#         fields = ("id", "name", "description", "price")
+class ProductSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "name", "description", "price")
 
-# product_schema = ProductSchema()
-# multiple_product_schema = ProductSchema(many=True)
+product_schema = ProductSchema()
+multiple_product_schema = ProductSchema(many=True)
 
 
 @app.route("/user/add", methods=["POST"])
