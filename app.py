@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://aljjcyagvjxyjk:93a7c670a9f67ccf82665e843b407a337fe45c28900e4bb2007b83a2f4e8e1dc@ec2-54-147-76-191.compute-1.amazonaws.com:5432/d351qjj953q2pl"
+app.config["DATABASE_URL"] = "mysql://bb2ef251680853:f96c55a9@us-cdbr-east-04.cleardb.com/heroku_b1238e369440257?"
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
