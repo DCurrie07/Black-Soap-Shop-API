@@ -11,8 +11,8 @@ app.secret_key= 'secret'
 
 app.config['MYSQL_DATABASE_USER'] = 'b80e6664a2dc60'
 app.config['MYSQL_DATABASE_PASSWORD'] = '79eb48e5'
-app.config['MYSQL_DATABASE_DB'] = 'us-cdbr-east-04.cleardb.com'
-app.config['MYSQL_DATABASE_HOST'] = 'heroku_f1cb21ef63afad5'
+app.config['MYSQL_DATABASE_DB'] = 'heroku_f1cb21ef63afad5'
+app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-east-04.cleardb.com'
 
 mysql = MySQL()
 mysql.init_app(app)
