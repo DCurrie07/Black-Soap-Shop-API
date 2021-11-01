@@ -48,7 +48,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-    price = db.Column(db.Decimal(10,2), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
 
     def __init__(self, name, description, price):
         self.name = name
