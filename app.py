@@ -23,8 +23,6 @@ class User(db.Model):
 
 db.create_all() # In case user table doesn't exists already. Else remove it.    
 
-db.session.add()
-
 db.session.commit() # This is needed to write the changes to database
 
 User.query.all()
@@ -43,8 +41,6 @@ class Admin(db.Model):
         self.last_name = last_name
 db.create_all() # In case user table doesn't exists already. Else remove it.    
 
-db.session.add(admin)
-
 db.session.commit() # This is needed to write the changes to database
 
 Admin.query.all()
@@ -60,8 +56,6 @@ class Product(db.Model):
         self.description = description
         self.price = price
 db.create_all() # In case user table doesn't exists already. Else remove it.    
-
-db.session.add()
 
 db.session.commit() # This is needed to write the changes to database
 
