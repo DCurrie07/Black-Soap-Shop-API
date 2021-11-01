@@ -1,21 +1,12 @@
 from logging import debug
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-from flask_cors import CORS
-from flask_bcrypt import Bcrypt
+
 
 app = Flask(__name__)
-app.secret_key= 'secret'
-
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://b80e6664a2dc60:79eb48e5@us-cdbr-east-04.cleardb.com/heroku_f1cb21ef63afad5'
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://b80e6664a2dc60:79eb48e5@us-cdbr-east-04.cleardb.com/heroku_f1cb21ef63afad5'
 db = SQLAlchemy(app)
-ma = Marshmallow(app)
-bcrypt = Bcrypt(app)
-CORS(app)
-db.init_app(app)
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,6 +21,14 @@ class User(db.Model):
         self.first_name = first_name
         self.last_name = last_name
 
+db.create_all() # In case user table doesn't exists already. Else remove it.    
+
+db.session.add()
+
+db.session.commit() # This is needed to write the changes to database
+
+User.query.all()
+
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False, unique=True)
@@ -42,7 +41,13 @@ class Admin(db.Model):
         self.password = password
         self.first_name = first_name
         self.last_name = last_name
+db.create_all() # In case user table doesn't exists already. Else remove it.    
 
+db.session.add(admin)
+
+db.session.commit() # This is needed to write the changes to database
+
+Admin.query.all()
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
@@ -54,27 +59,13 @@ class Product(db.Model):
         self.name = name
         self.description = description
         self.price = price
+db.create_all() # In case user table doesn't exists already. Else remove it.    
 
-class UserSchema(ma.Schema):
-    class Meta:
-        fields = ("id", "username", "password", "first_name", "last_name")
+db.session.add()
 
-user_schema = UserSchema()
-multiple_user_schema = UserSchema(many=True)
+db.session.commit() # This is needed to write the changes to database
 
-class AdminSchema(ma.Schema):
-    class Meta:
-        fields = ("id", "username", "password", "first_name", "last_name")
-
-admin_schema = AdminSchema()
-multiple_admin_schema = AdminSchema(many=True)
-
-class ProductSchema(ma.Schema):
-    class Meta:
-        fields = ("id", "name", "description", "price")
-
-product_schema = ProductSchema()
-multiple_product_schema = ProductSchema(many=True)
+Product.query.all()
 
 
 @app.route("/user/add", methods=["POST"])
