@@ -23,7 +23,7 @@ def index():
     #cur.execute('''INSERT INTO example VALUES (2, 'Billy')''')
     #mysql.connection.commit()
 
-    cur.execute('''SELECT * FROM example''')
+    cur.execute('''SELECT * FROM user''')
     results = cur.fetchall()
     print(results)
     return (results)
