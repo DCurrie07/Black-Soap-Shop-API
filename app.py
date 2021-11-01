@@ -2,7 +2,7 @@ from logging import debug
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
-from flask_mysql import MySQL
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
