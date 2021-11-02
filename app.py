@@ -1,5 +1,6 @@
 from flask import Flask, request
-import pymysql 
+import pymysql
+ 
 
 app = Flask(__name__)
 
@@ -23,4 +24,4 @@ def login():
         cursor.close()
         return f"Done!!"
  
-app.run(host='localhost', port=5000)
+app.run(host='sql5.freemysqlhosting.net', port=3306)
